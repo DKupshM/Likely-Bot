@@ -18,14 +18,22 @@ let bot = new Bot({
 
 bot.updateBotConfiguration();
 
+
+//Send back message
 function processTextMessage(message, callback){
-	
-		callback(null, 'It is ' + (Math.floor(Math.random() * 100) + 1) + '% likely');
+       callback(null, 'It is ' + (Math.floor(Math.random() * 100) + 1) + '% likely');
 }
 
 
 bot.onTextMessage((message) => {
-	console.log('Message Received: ', message);
+	 
+	// Log The Message in console for debug
+	console.log('Message Received: ');
+	console.log('	From: ', message.from);
+	console.log('	Participants: ', message.participants);
+	console.log('	Body: ', message.body);
+
+	// Reply
 	processTextMessage(message.body, function(err, response){
 		message.reply(response);
 	});
@@ -37,10 +45,6 @@ app.get('/', function(req, res){
 	res.send('Hello. This is a kik bot. Do @likelybot on kik to use.');
 });
 
-
-/**
- * @param message {query param}
- */
 app.get('/message', function(req, res){
 	console.log(req.query);
 	processTextMessage(req.query.message, function(err, response){
