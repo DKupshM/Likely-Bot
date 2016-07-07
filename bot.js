@@ -16,14 +16,30 @@ let bot = new Bot({
     baseUrl: 'likely-bot.herokuapp.com'
 });
 
-bot.updateBotConfiguration();
-
-bot.onTextMessage((message) => {
-    message.reply('It is ' + (Math.floor(Math.random() * 100) + 1) + '% likely');
+function processTextMessage(message, callback){
     console.log('Got Message:', message.body);
     console.log('Sent by', message.from);
     console.log('Group Participants', message.participants);
     console.log('Timestamp', message.timestamp);
+
+    callback(null, 'It is ' + (Math.floor(Math.random() * 100) + 1) + '% likely’);
+}
+
+bot.onTextMessage((message) => {
+    processTextMessage(message, function(err, response){
+		message.reply(response);
+   });
+});
+
+app.get('/', function(req, res){
+	res.send('Hello. This is a demo Kik chatbot. Visit @likelybot in Kik.');
+});
+
+app.get('/message', function(req, res){
+	console.log(req.query);
+	processTextMessage(req.query.message, function(err, response){
+		res.send(response);
+	});
 });
 
 app.use(bot.incoming());
