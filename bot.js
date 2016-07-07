@@ -7,7 +7,7 @@ let Bot  = require('@kikinteractive/kik');
 let bot = new Bot({
     username: 'LikelyBot',
     apiKey: 'aa1f0716-387b-4649-b039-4acba079bbd4',
-    baseUrl: 'https://f469ea2c.ngrok.io'
+    baseUrl: 'likely-bot.herokuapp.com'
 });
 
 bot.updateBotConfiguration();
