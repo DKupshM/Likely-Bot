@@ -29,7 +29,7 @@ bot.onTextMessage((message) => {
 	 
 	// Log The Message in console for debug
 	
-	console.log('Message From:', message.sender);
+	console.log('Message From:', message.from);
 	console.log('Message Viewers:', message.participants);
 	console.log('Message Body:', message.body);
 	
