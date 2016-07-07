@@ -28,13 +28,18 @@ function processTextMessage(message, callback){
 bot.onTextMessage((message) => {
 	 
 	// Log The Message in console for debug
-	console.log('Message Received: ');
-	console.log('	From: ', message.from);
-	console.log('	Participants: ', message.participants);
-	console.log('	Body: ', message.body);
-
-	// Reply
+	
+	console.log('Message From:', message.sender);
+	console.log('Message Viewers:', message.participants);
+	console.log('Message Body:', message.body);
+	
+	
+	// Process Message
 	processTextMessage(message.body, function(err, response){
+		//Log Message
+		console.log('Message Response:', response);
+		
+		//Reply
 		message.reply(response);
 	});
 });
