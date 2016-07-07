@@ -13,7 +13,7 @@ var app = express();
 let bot = new Bot({
     username: getenv('KIK_USERNAME'),
     apiKey: getenv('KIK_APIKEY'),
-    baseUrl: 'kik-echobot.ngrok.io'
+    baseUrl: 'likely-bot.herokuapp.com'
 });
 
 bot.updateBotConfiguration();
