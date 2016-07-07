@@ -1,22 +1,34 @@
+'use strict';
+
+let express = require('express');
 let util = require('util');
 let http = require('http');
-let random = require('rng');
 let Bot  = require('@kikinteractive/kik');
+let request = require('request');
+let getenv = require('getenv');
+
+var app = express();
 
 // Configure the bot API endpoint, details for your bot
 let bot = new Bot({
-    username: 'LikelyBot',
-    apiKey: 'aa1f0716-387b-4649-b039-4acba079bbd4',
-    baseUrl: 'likely-bot.herokuapp.com'
+    username: getenv('KIK_USERNAME'),
+    apiKey: getenv('KIK_APIKEY'),
+    baseUrl: 'https://0e67d07e.ngrok.io'
 });
 
 bot.updateBotConfiguration();
 
 bot.onTextMessage((message) => {
     message.reply('It is ' + (Math.floor(Math.random() * 100) + 1) + '% likely');
+    console.log('Got Message:', message.body);
+    console.log('Sent by', message.from);
+    console.log('Group Participants', message.participants);
+    console.log('Timestamp', message.timestamp);
 });
 
+app.use(bot.incoming());
+
 // Set up your server and start listening
-let server = http
-  .createServer(bot.incoming())
-  .listen(process.env.PORT || 8080);
+app.listen(process.env.PORT || 8080, function(){
+	console.log('Server started on port ' + (process.env.PORT || 8080));
+});

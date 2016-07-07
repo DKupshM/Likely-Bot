@@ -11,9 +11,13 @@
   "license": "ISC",
   "dependencies": {
     "@kikinteractive/kik": "^2.0.2",
-    "request": "^2.72.0"
+    "express": "^4.14.0",
+    "getenv": "^0.6.0",
+    "http": "0.0.0",
+    "request": "^2.72.0",
+    "util": "^0.10.3"
   },
   "engines": {
-    "node": "4.1.1"
+    "node": "6.2.2"
   }
 }
