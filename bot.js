@@ -46,7 +46,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/message', function(req, res){
-	console.log(req.query);
+
 	processTextMessage(req.query.message, function(err, response){
 		res.send(response);
 	});
