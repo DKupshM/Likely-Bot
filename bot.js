@@ -43,7 +43,7 @@ bot.onTextMessage((message) => {
 	console.log('Message Body:', message.body);
 	
 	instantReply(message);
-	setTimeout(processTextMessage(message, replyToMessage(err, response, message), 3000);
+	setTimeout(processTextMessage(message, replyToMessage(err, response, message)), 3000);
 });
 
 
