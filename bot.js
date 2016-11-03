@@ -18,9 +18,12 @@ let bot = new Bot({
 
 bot.updateBotConfiguration();
 
+function instantReply(message){
+	message.reply("Hmm... Let Me Think...");
+}
 
 //Send back message
-function processTextMessage(message, callback){
+function processTextMessage(callback){
        callback(null, 'It is ' + (Math.floor(Math.random() * 100) + 1) + '% likely');
 }
 
@@ -33,21 +36,19 @@ bot.onTextMessage((message) => {
 	console.log('Message Viewers:', message.participants);
 	console.log('Message Body:', message.body);
 	
-	
-	// Process Message
-	processTextMessage(message.body, function(err, response){
+	instantReply(message);
+	setTimeout(processTextMessage(function(err, response) {
 		//Log Message
 		console.log('Message Response:', response);
-		
 		//Reply
 		message.reply(response);
-	});
+	}), 3000);
 });
 
 
 
 app.get('/', function(req, res){
-	res.send('Hello. This is a kik bot. Do @likelybot on kik to use.');
+	res.send('Hello. This is a kik bot to say the changes. Do @likelybot on kik to use.');
 });
 
 app.get('/message', function(req, res){
