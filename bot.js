@@ -42,7 +42,7 @@ bot.onTextMessage((message) => {
 	instantReply(message);
 	// Process Message
 	
-	setTimeout(wait, 3000);
+	setTimeout(wait, 5000);
 	
 	processTextMessage(message.body, function(err, response){
 		//Log Message
