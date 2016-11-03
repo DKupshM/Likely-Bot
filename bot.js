@@ -24,10 +24,10 @@ function instantReply(message){
 
 //Send back message
 function processTextMessage(message, callback){
-       callback(null, 'It is ' + (Math.floor(Math.random() * 100) + 1) + '% likely', message);
+       callback('It is ' + (Math.floor(Math.random() * 100) + 1) + '% likely', message);
 }
 
-function replyToMessage(err, response, message){
+function replyToMessage(response, message){
 	//Log Message
 	console.log('Message Response:', response);
 	//Reply
@@ -43,7 +43,7 @@ bot.onTextMessage((message) => {
 	console.log('Message Body:', message.body);
 	
 	instantReply(message);
-	setTimeout(processTextMessage(message, replyToMessage(err, response, message)), 3000);
+	setTimeout(processTextMessage(message, replyToMessage(response, message)), 3000);
 });
 
 
